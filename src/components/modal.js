@@ -9,11 +9,26 @@ export function openModal({ title, content, onSubmit, submitLabel = 'Продо�
     const actions = document.createElement('div'); actions.className = 'modal-actions';
     const cancel = document.createElement('button'); cancel.type = 'button'; cancel.className = 'button button-secondary'; cancel.textContent = 'Отмена';
     const submit = document.createElement('button'); submit.type = 'submit'; submit.className = 'button button-primary'; submit.textContent = submitLabel;
-    actions.append(cancel, submit); dialog.append(close, heading, form, actions); overlay.append(dialog); document.body.append(overlay);
+    actions.append(cancel, submit);
+    // Keep the action buttons inside the form so the submit event fires on every device.
+    form.append(actions);
+    dialog.append(close, heading, form); overlay.append(dialog); document.body.append(overlay);
     const finish = value => { overlay.remove(); resolve(value); };
     close.addEventListener('click', () => finish(null)); cancel.addEventListener('click', () => finish(null));
     overlay.addEventListener('click', e => { if (e.target === overlay) finish(null); });
-    form.addEventListener('submit', async e => { e.preventDefault(); submit.disabled = true; try { finish(await onSubmit(new FormData(form))); } catch (error) { let note = form.querySelector('.form-error'); if (!note) { note = document.createElement('p'); note.className = 'form-error'; form.append(note); } note.textContent = error.message || 'Не удалось выполнить действие.'; submit.disabled = false; } });
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (submit.disabled) return;
+      submit.disabled = true; submit.textContent = 'Подождите…';
+      try {
+        finish(await onSubmit(new FormData(form)));
+      } catch (error) {
+        let note = form.querySelector('.form-error');
+        if (!note) { note = document.createElement('p'); note.className = 'form-error'; form.append(note); }
+        note.textContent = error.message || 'Не удалось выполнить действие.';
+        submit.disabled = false; submit.textContent = submitLabel;
+      }
+    });
     const first = form.querySelector('input,textarea,select'); if (first) setTimeout(() => first.focus(), 30);
   });
 }
