@@ -88,3 +88,22 @@
 @keyframes page-enter{from{opacity:.25}to{opacity:1}}
 @keyframes content-rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
 .button:focus-visible,.icon-button:focus-visible,.filter-chip:focus-visible,.nav-item:focus-visible,.quick-action:focus-visible,.overview-tile:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+
+/* Profile photo upload and activity-feed polish */
+.avatar-photo{display:inline-block;object-fit:cover;object-position:center;width:100%;height:100%;border-radius:inherit;background:var(--surface-2);vertical-align:middle}
+.avatar-photo-button{padding:0;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.profile-avatar-wrap{display:flex;flex-direction:column;align-items:center;gap:11px;flex-shrink:0}
+.profile-avatar-wrap .avatar-large{width:92px;height:92px;border-radius:27px;overflow:hidden}
+.avatar-upload-label{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;white-space:nowrap;cursor:pointer}
+.visually-hidden-file{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.visually-hidden-file:focus-visible+label{outline:2px solid var(--accent);outline-offset:3px}
+.profile-card-refined{align-items:center}
+.profile-card-refined>div:last-child{min-width:0}
+.profile-card-refined .tiny{margin-top:10px;max-width:260px;line-height:1.5}
+.profile-card-refined #avatar-remove{display:block;margin-top:9px}
+.history-actor-avatar{width:42px;height:42px;min-width:42px;flex:0 0 42px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;object-fit:cover;font-size:.76rem;font-weight:650;overflow:hidden}
+.history-record-card .record-main{align-items:center}
+.history-record-card .record-copy{min-width:0}
+.history-record-card .record-title-static{text-transform:capitalize}
+.history-record-card .record-meta{flex-wrap:wrap}
