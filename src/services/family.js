@@ -2,7 +2,7 @@ import { supabase } from './supabase.js';
 
 export async function getMyMembership() {
   if (!supabase) throw new Error('Supabase не настроен.');
-  const { data, error } = await supabase.from('family_members').select('family_id, role, display_name, avatar_color, joined_at, families(id, name, created_at)').is('removed_at', null).maybeSingle();
+  const { data, error } = await supabase.from('family_members').select('family_id, role, display_name, avatar_color, joined_at, families(id, name, created_at)').is('removed_at', null).order('joined_at', { ascending: true }).limit(1).maybeSingle();
   if (error) throw error;
   return data;
 }
