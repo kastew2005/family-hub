@@ -133,3 +133,35 @@ button.dashboard-stat:hover{transform:translateY(-3px);border-color:color-mix(in
 .profile-card-refined .avatar-large{width:76px;height:76px;font-size:1.3rem;box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 7%,transparent);border:2px solid color-mix(in srgb,var(--accent) 25%,var(--line))}
 .profile-card-refined h2{letter-spacing:-.04em}
 .profile-card-refined .muted{overflow-wrap:anywhere}
+
+
+/* Calendar + activity: editorial hierarchy and clearer information rhythm */
+.calendar-page-heading,.activity-page-heading{position:relative;padding-bottom:23px;margin-bottom:22px}
+.calendar-page-heading:after,.activity-page-heading:after{content:"";display:block;width:56px;height:2px;margin-top:21px;background:var(--accent);opacity:.8}
+.calendar-toolbar{align-items:center;gap:14px;margin:18px 0 22px}
+.calendar-toolbar .filter-strip{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.calendar-toolbar .filter-strip::-webkit-scrollbar{display:none}
+.calendar-event-card{position:relative;overflow:hidden;align-items:stretch;padding:17px 18px;border-radius:17px;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.calendar-event-card:before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 4px 4px 0;background:var(--accent);opacity:.8}
+.calendar-event-card .record-main{align-items:center;padding-left:3px}
+.calendar-event-icon{width:43px;height:43px;flex:0 0 43px;border-radius:14px;background:color-mix(in srgb,var(--accent) 12%,var(--surface-raised));color:var(--accent)}
+.calendar-event-card .record-title{font-size:1rem;line-height:1.4}
+.calendar-event-card .record-meta{margin-top:7px;gap:7px}
+.calendar-event-card .record-copy>p{margin:8px 0 0;font-size:.82rem;line-height:1.55}
+.calendar-event-card:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--accent) 34%,var(--line))}
+.activity-page-heading{margin-bottom:28px}
+.activity-notifications,.activity-history{margin-top:29px}
+.activity-notifications>.section-heading,.activity-history>.section-heading{align-items:center;gap:14px}
+.activity-notifications .records-list,.activity-history .records-list{gap:10px}
+.notification-card,.history-record-card{padding:16px 17px;border-radius:16px}
+.notification-card .record-main,.history-record-card .record-main{align-items:flex-start}
+.notification-card .quick-icon,.history-record-icon{width:39px;height:39px;flex:0 0 39px;border-radius:13px;background:var(--surface-raised);color:var(--accent)}
+.notification-card .record-title-static,.history-record-card .record-title-static{font-size:.92rem;line-height:1.45}
+.notification-card .record-copy>p{font-size:.82rem;line-height:1.55;margin:8px 0 10px}
+.notification-card .text-button{font-size:.78rem}
+.notification-card.is-read{opacity:.72;background:color-mix(in srgb,var(--surface) 76%,var(--bg))}
+.activity-history .filter-selects{padding:14px;border:1px solid var(--line);border-radius:16px;background:color-mix(in srgb,var(--surface) 72%,transparent);margin:14px 0 18px}
+.activity-history .filter-selects label span{font-size:.72rem;letter-spacing:.02em}
+.activity-history .filter-selects select,.activity-history .filter-selects input{min-height:42px;padding:10px 11px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--text)}
+.history-record-card .record-meta{margin-top:6px;line-height:1.5}
+@media(prefers-reduced-motion:reduce){.calendar-event-card{transition:none}}
