@@ -246,7 +246,7 @@ async function openShoppingEditor(item=null){
 }
 async function openShoppingBulkEditor(){
  const result=await openModal({title:'Добавить покупки списком',submitLabel:'Добавить товары',content:`<p class="muted">Вставь сразу весь список — каждый товар с новой строки. Можно просто указать название или использовать формат <strong>Название; количество; единица</strong>.</p><label class="field"><span>Список товаров</span><textarea name="bulk-items" rows="10" required placeholder="Молоко\nХлеб\nЯйца; 10; шт.\nКартофель; 2; кг\nВода; 6; бут."></textarea></label><p class="muted">Примеры: «Молоко» добавит 1 шт.; «Картофель; 2; кг» добавит 2 кг. Цена и магазин при необходимости указываются позже в расширенном режиме.</p>`,onSubmit:async d=>{
-   const lines=String(d.get('bulk-items')||'').split(/\\r?\\n/).map(s=>s.trim()).filter(Boolean);
+   const lines=String(d.get('bulk-items')||'').split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
    if(!lines.length)throw new Error('Введи хотя бы один товар.');
    if(lines.length>100)throw new Error('За один раз можно добавить не более 100 товаров.');
    const parsed=lines.map((line,index)=>{const parts=line.split(';').map(s=>s.trim());const title=requiredText(parts[0],`Название в строке ${index+1}`,160);const quantity=parts[1]||'1';if(!Number.isFinite(Number(quantity))||Number(quantity)<=0)throw new Error(`Проверь количество в строке ${index+1}.`);const unit=parts[2]||'шт.';if(unit.length>20)throw new Error(`Проверь единицу измерения в строке ${index+1}.`);return {title,quantity,unit};});
