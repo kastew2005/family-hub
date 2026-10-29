@@ -174,3 +174,14 @@
 .modal-sheet .modal-actions .button{min-height:49px}
 }
 @media(max-width:360px){.modal-sheet{padding-left:16px;padding-right:16px}.modal-sheet .modal-actions{flex-direction:column-reverse}.modal-sheet .modal-actions .button{width:100%}}
+
+
+@media(max-width:760px){
+.page-content{animation-duration:.22s}
+.quick-action:active,.overview-tile:active{transform:scale(.985)}
+.shopping-toolbar #shopping-bulk,.shopping-toolbar #shopping-add{min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+.page-content,.page-heading,.dashboard-hero,.section-block,.dashboard-section,.records-list>.record-card,.records-list>.shopping-group{animation:none!important}
+.app-shell svg,.modal-sheet svg,.icon-button,.button,.filter-chip,.nav-item,.quick-action,.overview-tile,.record-check,.fab,.text-button{transition:none!important}
+}
