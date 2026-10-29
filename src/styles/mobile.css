@@ -159,3 +159,18 @@
 .calendar-event-card .record-main{gap:8px}
 .activity-history .section-heading .toolbar .button{font-size:.7rem;padding-inline:6px}
 }
+
+
+/* Form sheets tuned for thumb reach and the iOS safe area */
+@media(max-width:760px){
+.modal-backdrop{align-items:flex-end;justify-content:center;padding:0}
+.modal-sheet{width:100%;max-width:none;max-height:min(90svh,820px);overflow:auto;overscroll-behavior:contain;padding:27px 20px calc(18px + var(--safe-bottom));border-radius:24px 24px 0 0;border-left:0;border-right:0;border-bottom:0}
+.modal-sheet:before{content:"";display:block;width:38px;height:4px;border-radius:9px;background:var(--line);margin:-13px auto 21px}
+.modal-sheet>h2{padding-right:42px;margin-bottom:22px}
+.modal-sheet>.icon-button{right:15px;top:15px;width:36px;height:36px}
+.modal-sheet .form-stack{gap:15px}
+.modal-sheet .field input,.modal-sheet .field textarea,.modal-sheet .field select,.modal-sheet .form-stack input:not([type=checkbox]):not([type=radio]),.modal-sheet .form-stack textarea,.modal-sheet .form-stack select{font-size:16px;min-height:48px}
+.modal-sheet .modal-actions{padding-top:13px;gap:9px}
+.modal-sheet .modal-actions .button{min-height:49px}
+}
+@media(max-width:360px){.modal-sheet{padding-left:16px;padding-right:16px}.modal-sheet .modal-actions{flex-direction:column-reverse}.modal-sheet .modal-actions .button{width:100%}}
