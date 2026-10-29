@@ -36,3 +36,36 @@
 .dashboard-progress{min-height:124px}.dashboard-quick-actions .quick-action small{font-size:.7rem}
 }
 @media(prefers-reduced-motion:reduce){.dashboard-stat,.dashboard-quick-actions .quick-action,.stat-progress-track span{transition:none!important}}
+
+@media(max-width:760px){
+.page-heading-tasks,.page-heading-shopping{padding-bottom:15px;margin-bottom:18px}
+.page-heading-tasks:after,.page-heading-shopping:after{margin-top:16px}
+.task-toolbar,.shopping-toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin:16px 0 12px}
+.task-toolbar .search-field,.shopping-toolbar .search-field{grid-column:1/-1;width:100%;min-width:0}
+.task-toolbar #task-templates,.shopping-toolbar #shopping-bulk{grid-column:1}
+.task-toolbar #task-add,.shopping-toolbar #shopping-add{grid-column:2}
+.task-toolbar .button,.shopping-toolbar .button{min-height:45px;padding:0 13px}
+.task-list-summary{margin:17px 0 10px}
+.task-record-card,.shopping-record-card{padding:12px 10px;gap:5px;border-radius:15px}
+.task-record-card .record-main,.shopping-record-card .record-main{gap:9px}
+.task-record-card .record-check,.shopping-record-card .record-check{width:31px;height:31px;flex-basis:31px;border-radius:10px}
+.task-record-card .record-title,.shopping-record-card .record-title{font-size:.9rem}
+.task-record-card .record-meta,.shopping-record-card .record-meta{font-size:.68rem;gap:4px}
+.task-record-card .record-tags,.shopping-record-card .record-tags{margin-top:8px;gap:5px}
+.task-record-card .status-tag,.task-record-card .priority-tag,.shopping-record-card .priority-tag{font-size:.62rem;padding:4px 6px}
+.task-record-card .record-actions,.shopping-record-card .record-actions{max-width:61px;gap:0}
+.task-record-card .record-actions .icon-button,.shopping-record-card .record-actions .icon-button{width:27px;min-width:27px;height:29px;padding:4px}
+.task-record-card .record-actions .comment-count,.shopping-record-card .record-actions .comment-count{display:none}
+.shopping-total{padding:16px;border-radius:15px;gap:8px}
+.shopping-total>span{font-size:.73rem;line-height:1.4}
+.shopping-total strong{font-size:1.35rem}
+.shopping-group{gap:7px;margin-bottom:13px}
+.shopping-group h3{margin-top:12px}
+}
+@media(max-width:360px){
+.task-toolbar,.shopping-toolbar{grid-template-columns:minmax(0,1fr) auto}
+.task-toolbar .button,.shopping-toolbar .button{padding:0 10px;font-size:.8rem}
+.task-record-card,.shopping-record-card{padding:10px 8px}
+.task-record-card .record-actions,.shopping-record-card .record-actions{max-width:54px}
+.task-record-card .record-actions .icon-button,.shopping-record-card .record-actions .icon-button{width:25px;min-width:25px}
+}
