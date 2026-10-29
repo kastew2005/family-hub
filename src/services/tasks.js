@@ -12,7 +12,7 @@ export async function setTaskStatus(task) { needClient(); const {data,error}=awa
 export async function updateTaskStatus(taskId,status) { needClient(); const {data,error}=await supabase.from('tasks').update({status}).eq('id',taskId).select().single(); if(error)throw error; return data; }
 export async function toggleFavorite(taskId,value) { needClient(); const {data,error}=await supabase.from('tasks').update({is_favorite:value}).eq('id',taskId).select().single(); if(error)throw error; return data; }
 export async function deleteTask(taskId) { needClient(); const {error}=await supabase.from('tasks').delete().eq('id',taskId); if(error)throw error; }
-export async function listMembers(familyId) { needClient(); const {data,error}=await supabase.from('family_members').select('user_id,display_name,avatar_color,role').eq('family_id',familyId).is('removed_at',null).order('joined_at'); if(error)throw error; return data||[]; }
+export async function listMembers(familyId) { needClient(); const {data,error}=await supabase.from('family_members').select('user_id,display_name,avatar_color,role,joined_at').eq('family_id',familyId).is('removed_at',null).order('joined_at'); if(error)throw error; return data||[]; }
 
 export async function reorderCategory({ id, sortOrder }) {
   needClient(); const { data, error } = await supabase.from('task_categories').update({ sort_order: sortOrder }).eq('id', id).select().single();
