@@ -169,7 +169,7 @@ function bindShell() {
     const result = await openModal({ title: 'Изменить имя', submitLabel: 'Сохранить', content: `<label class="field"><span>Имя</span><input name="name" required maxlength="60" value="${escapeAttr(state.membership.display_name || '')}" /></label>`, onSubmit: data => updateMyProfile({ displayName: requiredText(data.get('name'), 'Имя', 60) }) });
     if (result) { await loadWorkspace(); render(); toast('Профиль обновлён', 'success'); }
   });
-  document.querySelectorAll('[data-quick]').forEach(button => button.addEventListener('click', () => { const kind=button.dataset.quick; if(kind==='task') openTaskEditor(); else if(kind==='shopping') openShoppingEditor(); else openEventEditor(); }));
+  document.querySelectorAll('[data-quick]').forEach(button => button.addEventListener('click', () => { const kind=button.dataset.quick; if(kind==='task') navigate('tasks'); else if(kind==='shopping') navigate('shopping'); else if(kind==='event') navigate('calendar'); }));
   document.querySelector('#quick-add')?.addEventListener('click', () => getRoute()==='shopping'?openShoppingEditor():openTaskEditor());
   bindFeatureActions();
 }
