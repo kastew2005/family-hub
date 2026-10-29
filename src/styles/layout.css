@@ -48,3 +48,31 @@ button.dashboard-stat:hover{transform:translateY(-3px);border-color:color-mix(in
 .dashboard-activity h3{margin:0 0 5px;font-size:.94rem}
 .dashboard-activity p{margin:0;color:var(--muted);font-size:.78rem;max-width:380px}
 .dashboard-activity .button{white-space:nowrap;flex:0 0 auto}
+
+/* Task and shopping page refinement */
+.page-heading-tasks,.page-heading-shopping{position:relative;padding:0 0 20px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.page-heading-tasks:after,.page-heading-shopping:after{content:"";display:block;width:56px;height:3px;border-radius:3px;background:var(--accent);margin-top:21px}
+.page-heading-tasks h1,.page-heading-shopping h1{letter-spacing:-.065em}
+.task-toolbar,.shopping-toolbar{margin:22px 0 17px;gap:9px}
+.task-toolbar .search-field,.shopping-toolbar .search-field{background:var(--surface);min-height:49px;border-radius:14px}
+.task-toolbar .button,.shopping-toolbar .button{min-height:47px;border-radius:13px;white-space:nowrap}
+.task-toolbar .button-secondary,.shopping-toolbar .button-secondary{background:var(--surface);border-color:var(--line)}
+.task-list-summary{margin:20px 0 12px}
+.task-list-summary>.muted{font-size:.77rem}
+.task-record-card,.shopping-record-card{border-radius:17px;background:linear-gradient(125deg,var(--surface),color-mix(in srgb,var(--surface) 88%,var(--bg)));transition:border-color .2s,transform .2s,background .2s}
+.task-record-card:hover,.shopping-record-card:hover{border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+.task-record-card .record-check,.shopping-record-card .record-check{border-radius:12px;width:34px;height:34px;flex-basis:34px}
+.task-record-card .record-title,.shopping-record-card .record-title{font-size:.96rem;letter-spacing:-.015em}
+.task-record-card .record-meta,.shopping-record-card .record-meta{line-height:1.5}
+.task-record-card .record-tags,.shopping-record-card .record-tags{gap:6px}
+.task-record-card .status-tag,.task-record-card .priority-tag,.shopping-record-card .priority-tag{border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+.task-record-card .record-actions,.shopping-record-card .record-actions{gap:3px}
+.task-record-card .record-actions .icon-button,.shopping-record-card .record-actions .icon-button{border-radius:9px}
+.shopping-total{position:relative;overflow:hidden;border-radius:17px;padding:19px 20px;background:radial-gradient(ellipse at 100% 0,color-mix(in srgb,var(--accent) 13%,transparent),transparent 55%),var(--surface)}
+.shopping-total>span{display:flex;align-items:center;gap:8px}
+.shopping-total-mark{width:7px;height:7px;display:inline-block;flex:0 0 auto;border-radius:50%;background:var(--accent)}
+.shopping-total strong{font-size:1.45rem;letter-spacing:-.04em}
+.shopping-group{padding:0}
+.shopping-group h3{display:flex;align-items:center;gap:10px;margin:14px 2px 3px;font-size:.77rem;letter-spacing:.035em;text-transform:uppercase}
+.shopping-group h3:after{content:"";height:1px;flex:1;background:var(--line)}
+.records-list>.empty-activity{margin-top:12px;background:var(--surface)}
