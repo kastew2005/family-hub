@@ -26,10 +26,10 @@ export async function startApp() {
     supabase.auth.onAuthStateChange((_event, session) => {
       state.session = session;
       if (!session) clearPrivateState();
-      queueMicrotask(() => loadWorkspace().then(render).catch(error => { state.error = friendlyError(error); state.errorDetails = [error?.name,error?.message,error?.code && 'code: '+error.code,error?.status && 'status: '+error.status,error?.details,error?.hint].filter(Boolean).join('\n'); render(); }));
+      queueMicrotask(() => loadWorkspace().then(render).catch(error => { state.error = friendlyError(error); state.errorDetails = JSON.stringify({name:error?.name,message:error?.message,code:error?.code,status:error?.status,statusText:error?.statusText,details:error?.details,hint:error?.hint,context:error?.context,keys:error?Object.keys(error):[]},null,2); render(); }));
     });
     try { state.session = await getSession(); await loadWorkspace(); }
-    catch (error) { state.error = friendlyError(error); state.errorDetails = [error?.name,error?.message,error?.code && 'code: '+error.code,error?.status && 'status: '+error.status,error?.details,error?.hint].filter(Boolean).join('\n'); }
+    catch (error) { state.error = friendlyError(error); state.errorDetails = JSON.stringify({name:error?.name,message:error?.message,code:error?.code,status:error?.status,statusText:error?.statusText,details:error?.details,hint:error?.hint,context:error?.context,keys:error?Object.keys(error):[]},null,2); }
   }
   render();
 }
@@ -37,10 +37,13 @@ export async function startApp() {
 async function loadWorkspace() {
   state.unsubscribe?.(); state.unsubscribe = null; state.membership = null;
   if (!state.session) return;
+  state.errorStage = 'Запрос профиля пользователя (таблица profiles)';
   const { data, error } = await supabase.from('profiles').select('id, display_name, avatar_color, notification_settings, created_at').eq('id', state.session.user.id).maybeSingle();
   if (error) throw error;
   state.profile = data;
+  state.errorStage = 'Запрос членства семьи (таблица family_members)';
   state.membership = await getMyMembership();
+  state.errorStage = '';
   if (state.membership?.family_id) state.unsubscribe = subscribeToFamily(state.membership.family_id, () => { state.tasks=null;state.dashboardLoaded=false; state.categories=null; state.members=null; state.shopping=null;state.dashboardLoaded=false; state.archivedShopping=null; state.events=null; state.activity=null; state.notifications=null; state.notes=null; state.templates=null; state.stats=null; state.discussion=null; state.dashboardLoaded=false; render(); });
 }
 
@@ -72,7 +75,7 @@ function bindAuth() {
 function bindTheme() { document.querySelector('#theme-toggle')?.addEventListener('click', toggleTheme); }
 function toggleTheme() { state.theme = state.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('fh-theme', state.theme); document.documentElement.dataset.theme = state.theme; render(); }
 
-function workspaceErrorPage(message){const details=state.errorDetails||'';return `<main class="setup-layout"><section class="setup-content"><span class="brand-mark">fh</span><h1>Не удалось загрузить пространство</h1><p class="form-error">${escapeHtml(message)}</p><p class="muted">Семейные данные не удалены. Ошибка возникла при подключении к аккаунту или загрузке данных из Supabase.</p>${details?`<details class="error-details"><summary>Технические подробности</summary><pre>${escapeHtml(details)}</pre></details>`:''}<button id="offline-retry" class="button button-primary button-wide">Повторить</button><button id="signout" class="button button-secondary button-wide">Выйти из аккаунта</button></section></main>`;}
+function workspaceErrorPage(message){const details=state.errorDetails||'Подробности ошибки не получены. Нажмите «Повторить».';return `<main class="setup-layout"><section class="setup-content"><span class="brand-mark">fh</span><h1>Не удалось загрузить пространство</h1><p class="form-error">${escapeHtml(message)}</p><p class="muted">Данные семьи не удалены. Нужно определить, на каком запросе возникла ошибка.</p><details class="error-details" open><summary>Технические подробности</summary><p><strong>Этап:</strong> ${escapeHtml(state.errorStage||'Не определён')}</p><pre>${escapeHtml(details)}</pre></details><button id="offline-retry" class="button button-primary button-wide">Повторить</button><button id="signout" class="button button-secondary button-wide">Выйти из аккаунта</button></section></main>`;}
 function offlineWorkspacePage(){return `<main class="setup-layout"><section class="setup-content"><span class="brand-mark">fh</span><h1>Вы офлайн</h1><p class="muted">Семейные данные не сохранены в публичном офлайн-кэше. Подключитесь к интернету, чтобы безопасно загрузить ваше пространство и синхронизировать изменения.</p><button id="offline-retry" class="button button-primary button-wide">Повторить подключение</button><p class="tiny muted">Несинхронизированных действий нет: изменения без подтверждения сервера не считаются сохранёнными.</p></section></main>`;}
 function familySetup() {
   const name = state.profile?.display_name || state.session.user.user_metadata?.display_name || '';
