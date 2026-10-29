@@ -64,7 +64,7 @@ function bindAuth() {
       if (state.authMode === 'signup') await signUp({ email, password, name: requiredText(form.get('name'), 'Имя', 60) });
       else await signIn({ email, password });
       state.error = '';
-      if (state.authMode === 'signup') { toast('Аккаунт создан. Если включено подтверждение почты, проверьте входящие.', 'success'); }
+      if (state.authMode === 'signup') { toast('Регистрация отправлена. Подтвердите почту по ссылке из письма, затем войдите.', 'success'); }
     } catch (error) { state.error = friendlyError(error); render(); }
     finally { state.loading = false; }
   });
