@@ -126,3 +126,10 @@ button.dashboard-stat:hover{transform:translateY(-3px);border-color:color-mix(in
 .family-note-actions{display:flex;gap:2px}
 .family-notes-empty{display:flex;align-items:flex-start;gap:14px;grid-column:1/-1;padding:20px;border:1px dashed var(--line);border-radius:16px;background:color-mix(in srgb,var(--surface) 55%,transparent)}
 .family-notes-empty>div{min-width:0}
+
+.page-heading-profile{padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.page-heading-profile:after{content:"";display:block;width:54px;height:3px;background:var(--accent);border-radius:3px;margin-top:19px}
+.profile-card-refined{position:relative;overflow:hidden;background:radial-gradient(ellipse at 100% 0,color-mix(in srgb,var(--accent) 10%,transparent),transparent 55%),var(--surface);border-radius:20px}
+.profile-card-refined .avatar-large{width:76px;height:76px;font-size:1.3rem;box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 7%,transparent);border:2px solid color-mix(in srgb,var(--accent) 25%,var(--line))}
+.profile-card-refined h2{letter-spacing:-.04em}
+.profile-card-refined .muted{overflow-wrap:anywhere}
