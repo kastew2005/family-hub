@@ -6,6 +6,13 @@ export function openModal({ title, content, onSubmit, submitLabel = 'Продо�
     const close = document.createElement('button'); close.type = 'button'; close.className = 'icon-button'; close.setAttribute('aria-label', 'Закрыть'); close.textContent = '×';
     const form = document.createElement('form'); form.className = 'form-stack';
     form.innerHTML = content;
+    const shoppingMode = form.querySelector('select[name="shopping-mode"]');
+    const shoppingAdvanced = form.querySelector('.shopping-advanced-fields');
+    const syncShoppingMode = () => {
+      if (shoppingAdvanced && shoppingMode) shoppingAdvanced.hidden = shoppingMode.value !== 'advanced';
+    };
+    shoppingMode?.addEventListener('change', syncShoppingMode);
+    syncShoppingMode();
     const actions = document.createElement('div'); actions.className = 'modal-actions';
     const cancel = document.createElement('button'); cancel.type = 'button'; cancel.className = 'button button-secondary'; cancel.textContent = 'Отмена';
     const submit = document.createElement('button'); submit.type = 'submit'; submit.className = 'button button-primary'; submit.textContent = submitLabel;
