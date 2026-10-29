@@ -26,10 +26,10 @@ export async function startApp() {
     supabase.auth.onAuthStateChange((_event, session) => {
       state.session = session;
       if (!session) clearPrivateState();
-      queueMicrotask(() => loadWorkspace().then(render).catch(error => { state.error = error.message; render(); }));
+      queueMicrotask(() => loadWorkspace().then(render).catch(error => { state.error = friendlyError(error); state.errorDetails = [error?.name,error?.message,error?.code && 'code: '+error.code,error?.status && 'status: '+error.status,error?.details,error?.hint].filter(Boolean).join('\n'); render(); }));
     });
     try { state.session = await getSession(); await loadWorkspace(); }
-    catch (error) { state.error = error.message; }
+    catch (error) { state.error = friendlyError(error); state.errorDetails = [error?.name,error?.message,error?.code && 'code: '+error.code,error?.status && 'status: '+error.status,error?.details,error?.hint].filter(Boolean).join('\n'); }
   }
   render();
 }
@@ -72,7 +72,7 @@ function bindAuth() {
 function bindTheme() { document.querySelector('#theme-toggle')?.addEventListener('click', toggleTheme); }
 function toggleTheme() { state.theme = state.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('fh-theme', state.theme); document.documentElement.dataset.theme = state.theme; render(); }
 
-function workspaceErrorPage(message){return `<main class="setup-layout"><section class="setup-content"><span class="brand-mark">fh</span><h1>Не удалось загрузить пространство</h1><p class="form-error">${escapeHtml(message)}</p><p class="muted">Данные не очищены и не заменены демонстрационными. Проверьте подключение и настройки Supabase.</p><button id="offline-retry" class="button button-primary button-wide">Повторить</button><button id="signout" class="button button-secondary button-wide">Выйти</button></section></main>`;}
+function workspaceErrorPage(message){const details=state.errorDetails||'';return `<main class="setup-layout"><section class="setup-content"><span class="brand-mark">fh</span><h1>Не удалось загрузить пространство</h1><p class="form-error">${escapeHtml(message)}</p><p class="muted">Семейные данные не удалены. Ошибка возникла при подключении к аккаунту или загрузке данных из Supabase.</p>${details?`<details class="error-details"><summary>Технические подробности</summary><pre>${escapeHtml(details)}</pre></details>`:''}<button id="offline-retry" class="button button-primary button-wide">Повторить</button><button id="signout" class="button button-secondary button-wide">Выйти из аккаунта</button></section></main>`;}
 function offlineWorkspacePage(){return `<main class="setup-layout"><section class="setup-content"><span class="brand-mark">fh</span><h1>Вы офлайн</h1><p class="muted">Семейные данные не сохранены в публичном офлайн-кэше. Подключитесь к интернету, чтобы безопасно загрузить ваше пространство и синхронизировать изменения.</p><button id="offline-retry" class="button button-primary button-wide">Повторить подключение</button><p class="tiny muted">Несинхронизированных действий нет: изменения без подтверждения сервера не считаются сохранёнными.</p></section></main>`;}
 function familySetup() {
   const name = state.profile?.display_name || state.session.user.user_metadata?.display_name || '';
