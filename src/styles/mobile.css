@@ -185,3 +185,42 @@
 .page-content,.page-heading,.dashboard-hero,.section-block,.dashboard-section,.records-list>.record-card,.records-list>.shopping-group{animation:none!important}
 .app-shell svg,.modal-sheet svg,.icon-button,.button,.filter-chip,.nav-item,.quick-action,.overview-tile,.record-check,.fab,.text-button{transition:none!important}
 }
+
+
+/* Chromium on phones: stronger mobile sizing for compact Family Hub UI */
+@media(max-width:760px){
+  html{font-size:18px!important;-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}
+  body{font-size:18px!important;line-height:1.55}
+  .page-content{width:calc(100% - 32px);padding-top:24px}
+  .app-topbar{height:72px;padding-inline:16px}
+  .app-topbar .wordmark{font-size:1.05rem}
+  .page-heading h1{font-size:2.7rem}
+  .page-heading p,.welcome-block p{font-size:1rem;line-height:1.55}
+  .eyebrow{font-size:.76rem;letter-spacing:.1em}
+  .section-heading h2{font-size:1.5rem}
+  .tile-label{font-size:.9rem}
+  .tile-foot{font-size:.78rem}
+  .overview-tile{padding:16px;min-height:124px}
+  .quick-action strong{font-size:1rem}
+  .quick-action small{font-size:.86rem;line-height:1.45}
+  .nav-item{font-size:.74rem;gap:5px}
+  .nav-item svg{width:22px;height:22px}
+  .button{font-size:1rem;min-height:48px}
+  .record-title,.record-title-static{font-size:1.02rem;line-height:1.45}
+  .record-meta{font-size:.82rem;line-height:1.45}
+  .record-foot,.record-tags{font-size:.82rem}
+  .status-tag,.priority-tag{font-size:.74rem}
+  .filter-chip{font-size:.88rem;padding:11px 14px}
+  .search-field{font-size:1rem;min-height:48px}
+  .field{font-size:.92rem}
+  .field input,.field select,.field textarea{font-size:1rem;min-height:50px}
+  .filter-selects select{font-size:.86rem;min-height:44px}
+  .tiny,.member-details span{font-size:.84rem}
+  .how-to-complete strong{font-size:.95rem}
+  .how-to-complete p{font-size:.88rem}
+}
+@media(max-width:360px){
+  .page-content{width:calc(100% - 26px)}
+  .overview-tile{padding:13px}
+  .record-card{padding:12px 10px}
+}
