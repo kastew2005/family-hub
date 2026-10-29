@@ -107,3 +107,15 @@
 .history-record-card .record-copy{min-width:0}
 .history-record-card .record-title-static{text-transform:capitalize}
 .history-record-card .record-meta{flex-wrap:wrap}
+
+
+/* Inline guidance for the two most important family actions */
+.how-to-complete{display:flex;align-items:flex-start;gap:12px;padding:14px 15px;margin:15px 0 18px;border:1px solid var(--line);border-radius:15px;background:color-mix(in srgb,var(--surface) 78%,var(--accent) 8%)}
+.how-to-complete .how-to-icon{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--accent)}
+.how-to-complete strong{display:block;font-size:.84rem;line-height:1.4;font-weight:700}
+.how-to-complete p{margin:4px 0 0;color:var(--muted);font-size:.78rem;line-height:1.55}
+.task-record-card .record-check,.shopping-record-card .record-check{width:40px;height:40px;flex-basis:40px;border-radius:13px;cursor:pointer}
+.task-record-card .record-check:not(:disabled):hover,.shopping-record-card .record-check:not(:disabled):hover{border-color:var(--accent);color:var(--text);transform:scale(1.04)}
+.task-record-card .record-check.checked,.shopping-record-card .record-check.checked{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.record-check:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:760px){.how-to-complete{padding:12px;gap:10px;margin:12px 0 15px}.how-to-complete .how-to-icon{width:34px;height:34px;flex-basis:34px}.how-to-complete p{font-size:.76rem}.task-record-card .record-check,.shopping-record-card .record-check{width:40px;height:40px;flex-basis:40px}}
