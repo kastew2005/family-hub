@@ -1,4 +1,11 @@
 const paths = {
+  list:'<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/>',
+  'list-check':'<path d="M9 6h11M9 12h7M9 18h7"/><path d="m3.5 5.5 1 1 2-2M3.5 11.5l1 1 2-2M3.5 17.5l1 1 2-2"/>',
+  'shopping-bag':'<path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/>',
+  'clipboard-list':'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5h6V7H9zM9 11h6M9 15h6M9 18h3"/>',
+  'calendar-clock':'<rect x="3" y="5" width="14" height="16" rx="2"/><path d="M7 3v4m6-4v4M3 10h14"/><circle cx="18" cy="17" r="4"/><path d="M18 15v2l1.5 1"/>',
+  'sliders-horizontal':'<path d="M4 7h7m4 0h5M4 17h3m4 0h9"/><circle cx="13" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+  'sparkles':'<path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 14 .9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14ZM5 2l.8 2.2L8 5l-2.2.8L5 8l-.8-2.2L2 5l2.2-.8L5 2Z"/>',
   home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
   search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
   check:'<path d="m5 12 4 4L19 6"/>',
