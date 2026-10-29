@@ -114,3 +114,12 @@
 .family-member-remove,.family-member-self{min-height:40px}
 }
 @media(prefers-reduced-motion:reduce){.family-member-card{transition:none!important}}
+
+@media(max-width:760px){
+.page-heading-profile{padding-bottom:15px;margin-bottom:18px}
+.page-heading-profile:after{margin-top:15px}
+.profile-card-refined{padding:17px;gap:14px;border-radius:17px}
+.profile-card-refined .avatar-large{width:59px;height:59px;font-size:1rem}
+.profile-card-refined h2{font-size:1.2rem;overflow-wrap:anywhere}
+.profile-card-refined .button{min-height:42px}
+}
