@@ -2,7 +2,7 @@ import { supabase } from './supabase.js';
 
 export async function signUp({ email, password, name }) {
   if (!supabase) throw new Error('Сначала настройте подключение Supabase в файле .env.');
-  const { data, error } = await supabase.auth.signUp({ email: email.trim(), password, options: { data: { display_name: name.trim() } } });
+  const { data, error } = await supabase.auth.signUp({ email: email.trim(), password, options: { data: { display_name: name.trim() }, emailRedirectTo: `${window.location.origin}${import.meta.env.BASE_URL}` } });
   if (error) throw error;
   return data;
 }
