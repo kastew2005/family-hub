@@ -165,3 +165,11 @@ button.dashboard-stat:hover{transform:translateY(-3px);border-color:color-mix(in
 .activity-history .filter-selects select,.activity-history .filter-selects input{min-height:42px;padding:10px 11px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--text)}
 .history-record-card .record-meta{margin-top:6px;line-height:1.5}
 @media(prefers-reduced-motion:reduce){.calendar-event-card{transition:none}}
+
+
+/* Clearer icon surfaces for navigation and shopping actions */
+.stat-icon,.quick-icon,.feature-icon,.empty-symbol{transition:transform .22s cubic-bezier(.2,.8,.2,1),background-color .2s ease,color .2s ease}
+.quick-action:hover .quick-icon,.overview-tile:hover .stat-icon{transform:translateY(-2px) rotate(-3deg)}
+.shopping-toolbar #shopping-bulk{gap:9px}
+.shopping-toolbar #shopping-bulk svg{width:18px;height:18px;stroke-width:1.8}
+.shopping-toolbar #shopping-add svg{stroke-width:2}
