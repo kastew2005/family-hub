@@ -29,3 +29,10 @@
 .status-completed{border-color:color-mix(in srgb,var(--accent) 25%,var(--line));color:var(--accent)}
 .priority-urgent{border-color:color-mix(in srgb,#e48d83 28%,var(--line));color:#e48d83}
 .shopping-total strong{font-variant-numeric:tabular-nums}
+
+
+/* Consistent premium focus and tactile states for calendar/history controls */
+.calendar-toolbar .filter-chip{min-height:39px;padding:9px 14px}
+.calendar-toolbar #event-add{min-height:43px;white-space:nowrap}
+.calendar-event-card .record-title:focus-visible,.activity-page-heading button:focus-visible,.notification-card .text-button:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:5px}
+.activity-history .filter-selects select:focus-visible,.activity-history .filter-selects input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
